@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:submission_2_restaurant_app/data/model/restaurant.dart';
 import 'package:submission_2_restaurant_app/providers/restaurant_provider.dart';
@@ -7,8 +8,14 @@ import 'package:submission_2_restaurant_app/ui/restaurant_list.dart';
 import 'package:submission_2_restaurant_app/ui/add_review.dart';
 import 'package:submission_2_restaurant_app/ui/review_list.dart';
 import 'package:submission_2_restaurant_app/ui/search_restaurant.dart';
+import 'package:submission_2_restaurant_app/utils/notification_helper.dart';
 
-void main() {
+void main() async {
+ WidgetsFlutterBinding.ensureInitialized();
+ final NotificationHelper notificationHelper = NotificationHelper();
+ await notificationHelper.initNotification(FlutterLocalNotificationsPlugin());
+ notificationHelper.requestPermissionIOS(FlutterLocalNotificationsPlugin());
+
   runApp(
     MultiProvider(
       providers: [
