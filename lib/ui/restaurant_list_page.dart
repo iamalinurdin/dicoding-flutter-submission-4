@@ -1,39 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:submission_2_restaurant_app/providers/restaurant_provider.dart';
-import 'package:submission_2_restaurant_app/ui/restaurant_detail.dart';
 import 'package:submission_2_restaurant_app/ui/search_restaurant.dart';
-import 'package:submission_2_restaurant_app/utils/notification_helper.dart';
 import 'package:submission_2_restaurant_app/widgets/item_restaurant.dart';
 
-const textColor = Colors.white;
-const backgroundColor = Color.fromRGBO(33, 51, 99, 1);
-
-class RestaurantList extends StatefulWidget {
-  static String routeName = '/restaurant_list';
-
-  const RestaurantList({super.key});
-
-  @override
-  State<RestaurantList> createState() => _RestaurantListState();
-}
-
-class _RestaurantListState extends State<RestaurantList> {
-  final NotificationHelper _notificationHelper = NotificationHelper();
-
-   @override
-  void initState() {
-    super.initState();
-    _notificationHelper.configureSelectNotificationSubject(context, RestaurantDetailPage.routeName);
-    _notificationHelper.configureDidReceiveLocalNotificationSubject(context, RestaurantDetailPage.routeName);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    selectNotificationSubject.close();
-    didReceiveLocalNotificationSubject.close();
-  }
+class RestaurantListPage extends StatelessWidget {
+  const RestaurantListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +22,6 @@ class _RestaurantListState extends State<RestaurantList> {
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: textColor
                 ),
               ),
               const SizedBox(height: 10),
@@ -59,7 +30,6 @@ class _RestaurantListState extends State<RestaurantList> {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
-                  color: textColor
                 ),
               ),
               const SizedBox(height: 10),
