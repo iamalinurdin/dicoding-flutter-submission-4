@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:submission_2_restaurant_app/data/api/api_service.dart';
+import 'package:submission_2_restaurant_app/data/commons/state.dart';
 import 'package:submission_2_restaurant_app/data/model/restaurant.dart';
-
-enum ResultState { loading, noData, hasData, error }
 
 class RestaurantProvider with ChangeNotifier {
   late ApiService apiService = ApiService();

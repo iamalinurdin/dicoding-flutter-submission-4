@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:submission_2_restaurant_app/data/commons/state.dart';
 import 'package:submission_2_restaurant_app/providers/restaurant_provider.dart';
 import 'package:submission_2_restaurant_app/ui/search_restaurant.dart';
 import 'package:submission_2_restaurant_app/widgets/item_restaurant.dart';

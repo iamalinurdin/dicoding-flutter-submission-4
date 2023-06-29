@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:submission_2_restaurant_app/data/commons/state.dart';
+import 'package:submission_2_restaurant_app/providers/favorite_provider.dart';
 import 'package:submission_2_restaurant_app/providers/restaurant_provider.dart';
 import 'package:submission_2_restaurant_app/ui/add_review.dart';
 import 'package:submission_2_restaurant_app/ui/review_list.dart';
@@ -52,18 +54,49 @@ class RestaurantDetailPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Text(
-                            state.restaurant.name,
-                            style: const TextStyle(
-                              fontSize: 30
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            'Categories: ${state.restaurant.categories}',
-                            style: const TextStyle(
-                              fontSize: 15
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    state.restaurant.name,
+                                    style: const TextStyle(
+                                      fontSize: 30
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    'Categories: ${state.restaurant.categories}',
+                                    style: const TextStyle(
+                                      fontSize: 15
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Consumer<FavoriteProvider>(
+                                builder: (context, favoriteProvider, child) {
+                                  return FutureBuilder<bool>(
+                                    future: favoriteProvider.isFavorite(state.restaurant.id),
+                                    builder: (context, snapshot) {
+                                      final isFavorite = snapshot.data ?? false;
+
+                                      return IconButton(
+                                        onPressed: () {
+                                          if (isFavorite) {
+                                            favoriteProvider.removeFavorite(state.restaurant.id);
+                                          } else {
+                                            favoriteProvider.addFavorite(state.restaurant);
+                                          }
+                                        }, 
+                                        icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_outline)
+                                      );
+                                    },
+                                  );
+                                }
+                              )
+                            ],
                           ),
                           const SizedBox(height: 10),
                           Row(

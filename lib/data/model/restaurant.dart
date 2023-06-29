@@ -68,7 +68,7 @@ class Restaurant {
     return Restaurant(
       id         : item['id'],
       name       : item['name'],
-      description: item['description'],
+      description: item['description'] ?? '',
       pictureId  : 'https://restaurant-api.dicoding.dev/images/medium/${item['pictureId']}',
       city       : item['city'],
       rating     : item['rating'],
@@ -78,4 +78,11 @@ class Restaurant {
     );
   }
   
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'city': city,
+    'rating': rating,
+    // 'pictureId': pictureId
+  };
 }

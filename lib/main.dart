@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:submission_2_restaurant_app/data/db/favorite_db.dart';
 import 'package:submission_2_restaurant_app/data/model/restaurant.dart';
 import 'package:submission_2_restaurant_app/data/preferences/preference_helper.dart';
+import 'package:submission_2_restaurant_app/providers/favorite_provider.dart';
 import 'package:submission_2_restaurant_app/providers/preference_provider.dart';
 import 'package:submission_2_restaurant_app/providers/restaurant_provider.dart';
 import 'package:submission_2_restaurant_app/providers/scheduling_provider.dart';
 import 'package:submission_2_restaurant_app/ui/home_page.dart';
-import 'package:submission_2_restaurant_app/ui/restaurant_detail.dart';
+import 'package:submission_2_restaurant_app/ui/restaurant_detail_page.dart';
 import 'package:submission_2_restaurant_app/ui/add_review.dart';
 import 'package:submission_2_restaurant_app/ui/review_list.dart';
 import 'package:submission_2_restaurant_app/ui/search_restaurant.dart';
@@ -34,6 +36,11 @@ void main() async {
             preferenceHelper: PreferenceHelper(
               sharedPreferences: SharedPreferences.getInstance()
             )
+          )
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FavoriteProvider(
+            favoriteDB: FavoriteDB()
           )
         )
       ],

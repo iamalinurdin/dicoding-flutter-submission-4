@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:submission_2_restaurant_app/ui/restaurant_detail.dart';
+import 'package:submission_2_restaurant_app/ui/favorite_page.dart';
+import 'package:submission_2_restaurant_app/ui/restaurant_detail_page.dart';
 import 'package:submission_2_restaurant_app/ui/restaurant_list_page.dart';
-import 'package:submission_2_restaurant_app/ui/search_restaurant.dart';
 import 'package:submission_2_restaurant_app/ui/setting_page.dart';
 import 'package:submission_2_restaurant_app/utils/notification_helper.dart';
 
@@ -23,10 +23,10 @@ class _HomePageState extends State<HomePage> {
       icon: Icon(Icons.home),
       label: 'Home'
     ),
-    // const BottomNavigationBarItem(
-    //   icon: Icon(Icons.favorite_outline),
-    //   label: 'Favorites'
-    // ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.favorite_outline),
+      label: 'Favorites'
+    ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.settings),
       label: 'Settings'
@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> pages = [
     const RestaurantListPage(),
+    const FavoritePage(),
     const SettingPage()
   ];
 
@@ -76,13 +77,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: pages[selectedPage],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, SearchRestaurant.routeName);
-        },
-        child: const Icon(Icons.search),
-      ),
+      body: pages[selectedPage]
     );
   }
 }
