@@ -7,24 +7,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 import 'package:submission_2_restaurant_app/main.dart';
+import 'package:submission_2_restaurant_app/providers/restaurant_provider.dart';
+import 'package:submission_2_restaurant_app/ui/restaurant_list_page.dart';
+
+Widget restaurantList() => ChangeNotifierProvider<RestaurantProvider>(
+  create: (context) => RestaurantProvider()..fetchRestaurant(),
+  child: const MaterialApp(
+    home: RestaurantListPage(),
+  ),
+);
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('show list of restaurants', (WidgetTester tester) async {
+    await tester.pumpWidget(restaurantList());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byType(Text), findsWidgets);
   });
 }
