@@ -9,39 +9,58 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<FavoriteProvider>(
-        builder: (context, favoriteProvider, child) {
-          return ListView.builder(
-            itemCount: favoriteProvider.favorites.length,
-            itemBuilder: (context, index) {
-              var item = favoriteProvider.favorites[index];
-
-              return ListTile(
-                title: Text(
-                  item.name,
-                  style: const TextStyle(
-                    fontSize: 20
-                  ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Your favorite restaurants',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
                 ),
-                subtitle: Text(
-                  'Rating: ${item.rating.toString()}',
-                  style: const TextStyle(
-                    color: Colors.grey
-                  ),
-                ),
-                trailing: IconButton(
-                  icon: const Icon(
-                    Icons.visibility,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, RestaurantDetailPage.routeName, arguments: item.id);
+              ),
+              Expanded(
+                child: Consumer<FavoriteProvider>(
+                  builder: (context, favoriteProvider, child) {
+                    return ListView.builder(
+                      itemCount: favoriteProvider.favorites.length,
+                      itemBuilder: (context, index) {
+                        var item = favoriteProvider.favorites[index];
+              
+                        return ListTile(
+                          title: Text(
+                            item.name,
+                            style: const TextStyle(
+                              fontSize: 20
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Rating: ${item.rating.toString()}',
+                            style: const TextStyle(
+                              color: Colors.grey
+                            ),
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(
+                              Icons.visibility,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, RestaurantDetailPage.routeName, arguments: item.id);
+                            },
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
-              );
-            },
-          );
-        },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
