@@ -45,14 +45,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _notificationHelper.configureSelectNotificationSubject(context, RestaurantDetailPage.routeName);
-    _notificationHelper.configureDidReceiveLocalNotificationSubject(context, RestaurantDetailPage.routeName);
+    // _notificationHelper.configureDidReceiveLocalNotificationSubject(context, RestaurantDetailPage.routeName);
   }
 
   @override
   void dispose() {
     super.dispose();
     selectNotificationSubject.close();
-    didReceiveLocalNotificationSubject.close();
+    // didReceiveLocalNotificationSubject.close();
   }
 
   @override

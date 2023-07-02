@@ -18,6 +18,12 @@ class SettingPage extends StatelessWidget {
                 children: [
                   ListTile(
                     title: const Text('Notification'),
+                    subtitle: const Text(
+                      'Enabled Notification',
+                      style: TextStyle(
+                        color: Colors.grey
+                      ),
+                    ),
                     trailing: Consumer<SchedulingProvider>(
                       builder: (context, scheduling, child) {
                         return Switch.adaptive(

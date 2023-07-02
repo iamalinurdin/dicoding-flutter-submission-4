@@ -19,6 +19,12 @@ class RestaurantResult {
         )
       )
   );
+
+  Map<String, dynamic> toJson() => {
+    "message": message,
+    "total": total,
+    "restaurants": List<dynamic>.from(restaurants.map((x) => x.toJson())),
+  };
 }
 
 class RestaurantSearch {
